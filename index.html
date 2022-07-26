@@ -26,13 +26,12 @@
                   .append('g')
                   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
               const data = await d3.csv('data/CarPrice.csv');
-              console.log(
               d3.select("body")
                   .selectAll("p")
                   .data(data)
                   .enter()
                   .append("p")
-                  .html(function(d,i){return "item " + d.price + " is " + d.citympg + ".";});
+                  .html(function(d,i){return "item " + d.price + " is " + d.citympg + ".";};
             }
           </script>
         </div>
