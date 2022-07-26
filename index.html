@@ -26,7 +26,7 @@
                   .append('g')
                   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
               const data = await d3.csv('data/CarPrice.csv');
-              d3.select("body")
+              d3.select("div")
                   .selectAll("p")
                   .data(data)
                   .enter()
