@@ -83,7 +83,8 @@
           d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.citympg) + margin;}).attr("cy", function(d) {return yScale(d.price) + margin;}).attr("r", 4)
               .on("mouseover", function(d){
-                  d3.select("#tooltip").transition().duration(50).style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
+                  d3.select("#tooltip").transition().duration(50).style("opacity", 1);
+                  d3.select("#tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
                   .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
@@ -104,7 +105,8 @@
           d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.horsepower) + margin;}).attr("cy", function(d) {return yScale(d.citympg) + margin;}).attr("r", 4)
               .on("mouseover", function(d){
-                  d3.select("#tooltip").transition().duration(50).style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
+                  d3.select("#tooltip").transition().duration(50).style("opacity", 1);
+                  d3.select("#tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
                   .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
@@ -124,7 +126,8 @@
           d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.horsepower) + margin;}).attr("cy", function(d) {return yScale(d.price) + margin;}).attr("r", 4)
               .on("mouseover", function(d){
-                  d3.select("#tooltip").transition().duration(50).style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
+                  d3.select("#tooltip").transition().duration(50).style("opacity", 1);
+                  d3.select("#tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
                   .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
