@@ -76,7 +76,7 @@
         d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
                                                                                                         .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
         d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
-        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", (width / 2) + margin).attr("y", (height + margin + 35)).text("City mpg");
+        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("City mpg");
         d3.select("svg").append("g").call(d3.annotation().annotations(slide1Annotate));
       }
       else if(v1 == "citympg" && v2 == "horsepower"){
@@ -94,7 +94,7 @@
         d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
                                                                                                         .tickValues([40, 80, 120, 160, 200, 240, 280]));
         d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("City mpg");
-        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", (width / 2) + margin).attr("y", (height + margin + 35)).text("Horsepower");
+        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
         d3.select("svg").append("g").call(d3.annotation().annotations(slide2Annotate));
       }else{
         var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
@@ -111,7 +111,7 @@
         d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
                                                                                                         .tickValues([40, 80, 120, 160, 200, 240, 280]));
         d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
-        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", (width / 2) + margin).attr("y", (height + margin + 35)).text("Horsepower");
+        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
         d3.select("svg").append("g").call(d3.annotation().annotations(slide3Annotate));
       }
       d3.select("svg").append("g").call(d3.annotation().annotations(tooltipAnnotate));
