@@ -27,12 +27,13 @@
       <button onclick="forward()">></button>
     </div>
     <svg class="mainSVG" width=750 height=750></svg>
-    <div id="tooltip"></div>
+    //<div id="tooltip"></div>
     <script>
       var state = 0;
       var data;
       async function init(){
         data = await d3.csv("data/CarPrice.csv");
+        d3.select("body").append("div").attr("id", "tooltip").attr("style", "position: absolute; opacity: 0");
         toSlide(1);
       }
       function back(){
