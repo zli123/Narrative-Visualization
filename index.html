@@ -34,7 +34,6 @@
       var data;
       async function init(){
         data = await d3.csv("data/CarPrice.csv");
-        //d3.select("g").append("div").attr("id", "tooltip").attr("style", "position: absolute; opacity: 0;");
         toSlide(1);
       }
       function back(){
@@ -76,11 +75,11 @@
         if(v1 == "price" && v2 == "citympg"){
           var xScale = d3.scaleLinear().domain([10, 55]).range([0, width]);
           var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
-          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
+          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.citympg);}).attr("cy", function(d) {return yScale(d.price);}).attr("r", 4)
               .on("mouseover", function(d){
-                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
+                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
+                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
               })
               .on("mouseout", function() {tooltip.style("opacity", 0)});
           d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
@@ -94,11 +93,11 @@
         else if(v1 == "citympg" && v2 == "horsepower"){
           var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
           var yScale = d3.scaleLinear().domain([10, 55]).range([height, 0]);
-          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
+          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.horsepower);}).attr("cy", function(d) {return yScale(d.citympg);}).attr("r", 4)
               .on("mouseover", function(d){
-                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
+                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
+                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
               })
               .on("mouseout", function() {tooltip.style("opacity", 0)});
           d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
@@ -111,11 +110,11 @@
         }else{
           var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
           var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
-          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
+          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.horsepower);}).attr("cy", function(d) {return yScale(d.price);}).attr("r", 4)
               .on("mouseover", function(d){
-                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
+                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
+                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
               })
               .on("mouseout", function() {tooltip.style("opacity", 0)});
           d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
