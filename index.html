@@ -85,7 +85,7 @@
               .on("mouseover", function(d){
                   d3.select("#tooltip").transition().duration(50).style("opacity", 1);
                   d3.select("#tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
+                  .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
               })
@@ -107,7 +107,7 @@
               .on("mouseover", function(d){
                   d3.select("#tooltip").transition().duration(50).style("opacity", 1);
                   d3.select("#tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
+                  .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
               })
@@ -116,7 +116,7 @@
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
                                                                                                           .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
-                                                                                                          .tickValues([40, 80, 120, 160, 200, 240, 280]));
+                                                                                                          .tickValues([40, 80, 120, 160, 200, 240, 280, 320]));
           d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("City mpg");
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide2Annotate));
@@ -128,7 +128,7 @@
               .on("mouseover", function(d){
                   d3.select("#tooltip").transition().duration(50).style("opacity", 1);
                   d3.select("#tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
+                  .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
               })
@@ -136,7 +136,7 @@
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
                                                                                                           .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
-                                                                                                          .tickValues([40, 80, 120, 160, 200, 240, 280]));
+                                                                                                          .tickValues([40, 80, 120, 160, 200, 240, 280, 320]));
           d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide3Annotate));
