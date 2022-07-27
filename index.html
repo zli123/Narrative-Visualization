@@ -73,10 +73,10 @@
       }
       function draw(v1, v2){
         var width = 650, height = 650, margin = 50;
-        var tooltipAnnotate = [{note: {title: "Explore the data", label: "Mouse over data points for more info"}, x: 100, y: margin}]
-        var slide1Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between price and fuel efficiency"}, x: 250, y: 300}]
-        var slide2Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between fuel efficiency and horsepower"}, x: 250, y: 300}]
-        var slide3Annotate = [{note: {title: "Positive Correlation", label: "There is a positive correlation between price and horsepower"}, x: 250, y: 300}]
+        var tooltipAnnotate = [{note: {title: "Explore the data", label: "Mouse over data points for more info"}, x: 250, y: margin}]
+        var slide1Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between price and fuel efficiency"}, x: 450, y: 200}]
+        var slide2Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between fuel efficiency and horsepower"}, x: 450, y: 200}]
+        var slide3Annotate = [{note: {title: "Positive Correlation", label: "There is a positive correlation between price and horsepower"}, x: 450, y: 450}]
         if(v1 == "price" && v2 == "citympg"){
           var xScale = d3.scaleLinear().domain([10, 55]).range([0, width]);
           var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
@@ -100,7 +100,7 @@
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide1Annotate));
         }
         else if(v1 == "citympg" && v2 == "horsepower"){
-          var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
+          var xScale = d3.scaleLinear().domain([40, 320]).range([0, width]);
           var yScale = d3.scaleLinear().domain([10, 55]).range([height, 0]);
           d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.horsepower) + margin;}).attr("cy", function(d) {return yScale(d.citympg) + margin;}).attr("r", 4)
@@ -121,7 +121,7 @@
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide2Annotate));
         }else{
-          var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
+          var xScale = d3.scaleLinear().domain([40, 320]).range([0, width]);
           var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
           d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
               .attr("cx", function(d) {return xScale(d.horsepower) + margin;}).attr("cy", function(d) {return yScale(d.price + margin);}).attr("r", 4)
