@@ -95,7 +95,7 @@
                                                                                                           .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
                                                                                                           .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
-          d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 26).attr("x", -275).attr("transform", "rotate(-90)").text("Price");
+          d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 15).attr("x", -325).attr("transform", "rotate(-90)").text("Price");
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("City mpg");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide1Annotate));
         }
@@ -117,7 +117,7 @@
                                                                                                           .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
                                                                                                           .tickValues([40, 80, 120, 160, 200, 240, 280, 320]));
-          d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 26).attr("x", -275).attr("transform", "rotate(-90)").text("City mpg");
+          d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 15).attr("x", -325).attr("transform", "rotate(-90)").text("City mpg");
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide2Annotate));
         }else{
@@ -137,7 +137,7 @@
                                                                                                           .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
                                                                                                           .tickValues([40, 80, 120, 160, 200, 240, 280, 320]));
-          d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 26).attr("x", -275).attr("transform", "rotate(-90)").text("Price");
+          d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 15).attr("x", -325).attr("transform", "rotate(-90)").text("Price");
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide3Annotate));
         }
