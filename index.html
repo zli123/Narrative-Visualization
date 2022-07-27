@@ -88,7 +88,7 @@
                   .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
-              })
+              });
               //.on("mouseout", function() {tooltip.style("opacity", 0)});
           point.on("mouseout", function() {d3.select("#tooltip").style("opacity", 0)});
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
@@ -110,7 +110,7 @@
                   .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
-              })
+              });
               //.on("mouseout", function() {tooltip.style("opacity", 0)});
           point.on("mouseout", function() {d3.select("#tooltip").style("opacity", 0)});
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
@@ -131,7 +131,7 @@
                   .html("City mpg: " + d.citympg + "<br/>" + "Price: " + d.price + "<br/>" + "Horsepower: " + d.horsepower);
                   //tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY) + "px")
                   //.html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders: " + d.cylindernumber + "<br/>" + "Curb Weight: " + d.curbweight);
-              })
+              });
           point.on("mouseout", function() {d3.select("#tooltip").style("opacity", 0)});
           d3.select(".mainSVG").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
                                                                                                           .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
