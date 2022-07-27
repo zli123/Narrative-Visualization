@@ -1,8 +1,10 @@
 <!doctype html>
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 <style>
   .mainSVG circle {fill: steelblue;}
   #tooltip {
-    opacity: 1;
+    opacity: 0;
     position: absolute;
     text-align: center;
     width: 60px; height: 40px;
@@ -14,8 +16,6 @@
   <head>
     <meta charset="utf-8">
     <title>Narrative Visualization</title>
-    <script src='https://d3js.org/d3.v5.min.js'></script>
-    <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
   </head>
   <body onload="init()">
     <h1>How Properties of Vehicles are Related to Each Other</h1>
