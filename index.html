@@ -74,7 +74,6 @@
       function draw(v1, v2){
         var width = 650, height = 650, margin = 50;
         var tooltipAnnotate = [{note: {title: "Explore the data", label: "Mouse over data points for more info"}, x: 250, y: margin}]
-        var slide1Title = [{note: {label: "Price VS Fuel Efficiency"}, x: 300, y: 0}]
         var slide1Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between price and fuel efficiency"}, x: 450, y: 200}]
         var slide2Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between fuel efficiency and horsepower"}, x: 450, y: 200}]
         var slide3Annotate = [{note: {title: "Positive Correlation", label: "There is a positive correlation between price and horsepower"}, x: 450, y: 450}]
@@ -99,7 +98,6 @@
           d3.select(".mainSVG").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 15).attr("x", -355).attr("transform", "rotate(-90)").text("Price, USD");
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("City mpg");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide1Annotate));
-          d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide1Title));
         }
         else if(v1 == "citympg" && v2 == "horsepower"){
           var xScale = d3.scaleLinear().domain([40, 320]).range([0, width]);
