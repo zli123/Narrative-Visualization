@@ -16,106 +16,104 @@
         <button id="3" onclick="toSlide(3)">Price VS Horsepower</button>
         <button onclick="forward()">></button>
       </div>
-  <svg class="mainSVG" width=750 height=750></svg>
-  <script>
-    var state = 0;
-    var data;
-    async function init(){
-      data = await d3.csv("data/CarPrice.csv");
-      d3.select("g").append("div").attr("id", "tooltip").attr("style", "position: absolute; opacity: 0;");
-      toSlide(1);
-    }
-    function back(){
-      if(state > 1){
-        state--;
-        toSlide(state);
+    <svg class="mainSVG" width=750 height=750></svg>
+    <div id="tooltip" opacity=0></div>
+    <script>
+      var state = 0;
+      var data;
+      async function init(){
+        data = await d3.csv("data/CarPrice.csv");
+        //d3.select("g").append("div").attr("id", "tooltip").attr("style", "position: absolute; opacity: 0;");
+        toSlide(1);
       }
-    }
-    function forward(){
-      if(state < 3){
-        state++;
-        toSlide(state);
+      function back(){
+        if(state > 1){
+          state--;
+          toSlide(state);
+        }
       }
-    }
-    function clear(){
-      d3.selectAll("svg > *").remove();
-      d3.select("tooltip").style("opacity", 0);
-    }
-    function toSlide(curr){
-      state = curr;
-      clear();
-      if(state == 1){
-        d3.select("header").text("Price VS Fuel Efficiency");
-        draw("price", "citympg");
-      }else if(state == 2){
-        d3.select("header").text("Fuel Efficiency VS Horsepower");
-        draw("citympg", "horsepower");
-      }else{
-        d3.select("header").text("Price VS Horsepower");
-        draw("price", "horsepower");
+      function forward(){
+        if(state < 3){
+          state++;
+          toSlide(state);
+        }
       }
-    }
-    function draw(v1, v2){
-      var width = 650, height = 650, margin = 50;
-      var tooltipAnnotate = [{note: {title: "Explore the data", label: "Mouse over data points for more info"}, x: 100, y: margin}]
-      var slide1Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between price and fuel efficiency"}, x: 250, y: 300}]
-      var slide2Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between fuel efficiency and horsepower"}, x: 250, y: 300}]
-      var slide3Annotate = [{note: {title: "Positive Correlation", label: "There is a positive correlation between price and horsepower"}, x: 250, y: 300}]
-      if(v1 == "price" && v2 == "citympg"){
-        var xScale = d3.scaleLinear().domain([10, 55]).range([0, width]);
-        var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
-        d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
-            .attr("cx", function(d) {return xScale(d.citympg);}).attr("cy", function(d) {return yScale(d.price);}).attr("r", 2)
-            .on("mouseover", function(d){
-                d3.select("tooltip").transition().duration(50).style("opacity", 1);
-                d3.select("tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                    .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
-            });
-        d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
-                                                                                                        .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
-        d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
-                                                                                                        .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
-        d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
-        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("City mpg");
-        d3.select("svg").append("g").call(d3.annotation().annotations(slide1Annotate));
+      function clear(){
+        d3.selectAll("svg > *").remove();
+        d3.select("tooltip").style("opacity", 0);
       }
-      else if(v1 == "citympg" && v2 == "horsepower"){
-        var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
-        var yScale = d3.scaleLinear().domain([10, 55]).range([height, 0]);
-        d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
-            .attr("cx", function(d) {return xScale(d.horsepower);}).attr("cy", function(d) {return yScale(d.citympg);}).attr("r", 5)
-            .on("mouseover", function(d){
-                d3.select("tooltip").transition().duration(50).style("opacity", 1);
-                d3.select("tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                    .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
-            });
-        d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
-                                                                                                        .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
-        d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
-                                                                                                        .tickValues([40, 80, 120, 160, 200, 240, 280]));
-        d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("City mpg");
-        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
-        d3.select("svg").append("g").call(d3.annotation().annotations(slide2Annotate));
-      }else{
-        var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
-        var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
-        d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
-            .attr("cx", function(d) {return xScale(d.horsepower);}).attr("cy", function(d) {return yScale(d.price);}).attr("r", 2)
-            .on("mouseover", function(d){
-                d3.select("tooltip").transition().duration(50).style("opacity", 1);
-                d3.select("tooltip").style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
-                    .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
-            });
-        d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
-                                                                                                        .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
-        d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
-                                                                                                        .tickValues([40, 80, 120, 160, 200, 240, 280]));
-        d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
-        d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
-        d3.select("svg").append("g").call(d3.annotation().annotations(slide3Annotate));
+      function toSlide(curr){
+        state = curr;
+        clear();
+        if(state == 1){
+          d3.select("header").text("Price VS Fuel Efficiency");
+          draw("price", "citympg");
+        }else if(state == 2){
+          d3.select("header").text("Fuel Efficiency VS Horsepower");
+          draw("citympg", "horsepower");
+        }else{
+          d3.select("header").text("Price VS Horsepower");
+          draw("price", "horsepower");
+        }
       }
-      d3.select("svg").append("g").call(d3.annotation().annotations(tooltipAnnotate));
-    }  
-  </script>
+      function draw(v1, v2){
+        var width = 650, height = 650, margin = 50;
+        var tooltipAnnotate = [{note: {title: "Explore the data", label: "Mouse over data points for more info"}, x: 100, y: margin}]
+        var slide1Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between price and fuel efficiency"}, x: 250, y: 300}]
+        var slide2Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between fuel efficiency and horsepower"}, x: 250, y: 300}]
+        var slide3Annotate = [{note: {title: "Positive Correlation", label: "There is a positive correlation between price and horsepower"}, x: 250, y: 300}]
+        if(v1 == "price" && v2 == "citympg"){
+          var xScale = d3.scaleLinear().domain([10, 55]).range([0, width]);
+          var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
+          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
+              .attr("cx", function(d) {return xScale(d.citympg);}).attr("cy", function(d) {return yScale(d.price);}).attr("r", 4)
+              .on("mouseover", function(d){
+                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
+                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
+              });
+          d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
+                                                                                                          .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
+          d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
+                                                                                                          .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
+          d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
+          d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("City mpg");
+          d3.select("svg").append("g").call(d3.annotation().annotations(slide1Annotate));
+        }
+        else if(v1 == "citympg" && v2 == "horsepower"){
+          var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
+          var yScale = d3.scaleLinear().domain([10, 55]).range([height, 0]);
+          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
+              .attr("cx", function(d) {return xScale(d.horsepower);}).attr("cy", function(d) {return yScale(d.citympg);}).attr("r", 4)
+              .on("mouseover", function(d){
+                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
+                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
+              });
+          d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
+                                                                                                          .tickValues([10, 15, 20, 25, 30, 35, 40, 45, 50, 55]));
+          d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
+                                                                                                          .tickValues([40, 80, 120, 160, 200, 240, 280]));
+          d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("City mpg");
+          d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
+          d3.select("svg").append("g").call(d3.annotation().annotations(slide2Annotate));
+        }else{
+          var xScale = d3.scaleLinear().domain([40, 280]).range([0, width]);
+          var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
+          d3.select("svg").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll().data(data).enter().append("circle")
+              .attr("cx", function(d) {return xScale(d.horsepower);}).attr("cy", function(d) {return yScale(d.price);}).attr("r", 4)
+              .on("mouseover", function(d){
+                  tooltip.style("opacity", 1).style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - margin) + "px")
+                  .html("Drive Wheel: " + d.drivewheel + "<br/>" + "Number of Cylinders:" + d.cylindernumber + "<br/>" + "Curb Weight" + d.curbweight);
+              });
+          d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + margin + ")").call(d3.axisLeft(yScale)
+                                                                                                          .tickValues([0, 10000, 20000, 30000, 40000, 50000]));
+          d3.select("svg").append("g").attr("transform", "translate(" + margin + "," + (height + margin) + ")").call(d3.axisBottom(xScale)
+                                                                                                          .tickValues([40, 80, 120, 160, 200, 240, 280]));
+          d3.select("svg").append("text").attr("class", "ylabel").attr("text-anchor", "end").attr("y", 6).attr("x", -225).attr("transform", "rotate(-90)").text("Price");
+          d3.select("svg").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
+          d3.select("svg").append("g").call(d3.annotation().annotations(slide3Annotate));
+        }
+        d3.select("svg").append("g").call(d3.annotation().annotations(tooltipAnnotate));
+      }  
+    </script>
   </body>
 </html>
