@@ -16,8 +16,11 @@
     border-style: solid;
     border-radius: 3px;
   }
-  .but:active {
-    background: yellow;
+  .but{
+    background: white;
+  }
+  .but:hover {
+    background: orange;
   }
 </style>
 <html lang="en">
@@ -29,16 +32,21 @@
     <h1>How Properties of Vehicles are Related to Each Other</h1>
     <h4>Data provided by Kaggle: https://www.kaggle.com/datasets/hellbuoy/car-price-prediction</h4>
     <div class="buttons">
-      <button onclick="back()"><</button>
+      <button class = "but" id="0" onclick="back()"><</button>
       <button class = "but" id="1" onclick="toSlide(1)">Price VS Fuel Efficiency</button>
       <button class = "but" id="2" onclick="toSlide(2)">Fuel Efficiency VS Horsepower</button>
       <button class = "but" id="3" onclick="toSlide(3)">Price VS Horsepower</button>
-      <button onclick="forward()">></button>
+      <button class = "but" id="4" onclick="forward()">></button>
     </div>
     <svg class="mainSVG"></svg>
     <script>
       var state = 0;
       var data;
+      const btn0 = document.getElementById("0");
+      const btn1 = document.getElementById("1");
+      const btn2 = document.getElementById("2");
+      const btn3 = document.getElementById("3");
+      const btn4 = document.getElementById("4");
       async function init(){
         data = await d3.csv("data/CarPrice.csv");
         d3.select("body").append("div").attr("id", "tooltip").attr("style", "position: absolute; opacity: 0");
@@ -81,6 +89,9 @@
         var slide2Annotate = [{note: {title: "Negative Correlation", label: "There is a negative correlation between fuel efficiency and horsepower"}, x: 450, y: 200}]
         var slide3Annotate = [{note: {title: "Positive Correlation", label: "There is a positive correlation between price and horsepower"}, x: 450, y: 450}]
         if(v1 == "price" && v2 == "citympg"){
+          btn1.style.backgroundColor = 'orange';
+          btn2.style.backgroundColor = 'white';
+          btn3.style.backgroundColor = 'white';
           var xScale = d3.scaleLinear().domain([10, 55]).range([0, width]);
           var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
           var point = d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
@@ -103,6 +114,9 @@
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide1Annotate));
         }
         else if(v1 == "citympg" && v2 == "horsepower"){
+          btn2.style.backgroundColor = 'orange';
+          btn1.style.backgroundColor = 'white';
+          btn3.style.backgroundColor = 'white';
           var xScale = d3.scaleLinear().domain([40, 320]).range([0, width]);
           var yScale = d3.scaleLinear().domain([10, 55]).range([height, 0]);
           var point = d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
@@ -124,6 +138,9 @@
           d3.select(".mainSVG").append("text").attr("class", "xlabel").attr("text-anchor", "end").attr("x", ((width / 2) + margin)).attr("y", (height + margin + 35)).text("Horsepower");
           d3.select(".mainSVG").append("g").call(d3.annotation().annotations(slide2Annotate));
         }else{
+          btn3.style.backgroundColor = 'orange';
+          btn1.style.backgroundColor = 'white';
+          btn2.style.backgroundColor = 'white';
           var xScale = d3.scaleLinear().domain([40, 320]).range([0, width]);
           var yScale = d3.scaleLinear().domain([0, 50000]).range([height, 0]);
           var point = d3.select(".mainSVG").append("g").attr("transform", "translate(", + margin + "," + margin + ")").selectAll("circle").data(data).enter().append("circle")
